@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乌热集团暖费速办登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+        
+        /* 移动端原型区域 */
+        .prototype {
+            width: 375px;
+            height: 667px;
+            background-color: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            flex-shrink: 0;
+            border: 10px solid #333;
+            border-top-width: 50px;
+            border-bottom-width: 50px;
+            position: relative;
+        }
+        
+        .prototype:before {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 10px;
+            background: #333;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+        
+        .prototype:after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #444;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+        }
+        
+        .login-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 30px;
+            background: linear-gradient(to bottom, #fff, #f5f5f5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: auto;
+            height: 30px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+        
+        .app-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e73323;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .login-form {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #e73323;
+            box-shadow: 0 0 0 3px rgba(231, 51, 35, 0.1);
+            background-color: #fff;
+        }
+        
+        .verify-code-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .verify-code-input {
+            flex: 1;
+        }
+        
+        .get-code-btn {
+            width: 120px;
+            background-color: #f5f5f5;
+            color: #e73323;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .get-code-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #e73323, #f5953c);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 51, 35, 0.3);
+        }
+        
+        .login-button:active {
+            transform: translateY(0);
+        }
+        
+        .privacy-policy {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+        
+        .privacy-policy a {
+            color: #e73323;
+            text-decoration: none;
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px 0;
+        }
+        
+        .quick-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        
+        .quick-action-item {
+            text-align: center;
+            width: 70px;
+        }
+        
+        .quick-action-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            color: #e73323;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .quick-action-text {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* 设计说明区域 */
+        .design-notes {
+            flex-grow: 1;
+            padding: 30px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .design-notes h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .design-section {
+            margin-bottom: 25px;
+        }
+        
+        .design-section h3 {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .design-section h3:before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: linear-gradient(to bottom, #e73323, #f5953c);
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .design-section p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .design-section ul {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .design-section li {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+        
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .color-item {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .color-item::after {
+            content: attr(data-color);
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .primary-red {
+            background-color: #e73323;
+        }
+        
+        .secondary-yellow {
+            background-color: #f5953c;
+        }
+        
+        .brand-purple {
+            background-color: #8c2057;
+        }
+        
+        .white-color {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .light-bg {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+        }
+        
+        /* 响应式布局 */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .prototype {
+                margin-bottom: 30px;
+            }
+            
+            .design-notes {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 移动端原型 -->
+        <div class="prototype">
+            <div class="login-container">
+                <!-- 公司商标和应用名称在同一行 -->
+                <div class="logo-container">
+                    <img src="src/static/WuReGroup.png" alt="乌热集团" class="logo">
+                    <div class="app-name">精准暖费速办</div>
+                </div>
+                
+                <div class="login-header">
+                    <h1>欢迎登录</h1>
+                    <p>快捷支付暖气费，温暖服务每一天</p>
+                </div>
+                
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="phone">手机号码</label>
+                        <input type="tel" id="phone" placeholder="请输入手机号码" maxlength="11">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="verifyCode">验证码</label>
+                        <div class="verify-code-container">
+                            <input type="text" id="verifyCode" placeholder="请输入验证码" class="verify-code-input" maxlength="6">
+                            <button class="get-code-btn" id="getCodeBtn">获取验证码</button>
+                        </div>
+                    </div>
+                    
+                    <button class="login-button" id="loginBtn">登录</button>
+                    
+                    <div class="privacy-policy">
+                        登录即表示您同意<a href="#">《用户协议》</a>和<a href="#">《隐私政策》</a>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <div class="quick-action-item">
+                        <div class="quick-action-icon">?</div>
+                        <div class="quick-action-text">常见问题</div>
+                    </div>
+                    <div class="quick-action-item">
+                        <div class="quick-action-icon">$</div>
+                        <div class="quick-action-text">缴费指南</div>
+                    </div>
+                    <div class="quick-action-item">
+                        <div class="quick-action-icon">✆</div>
+                        <div class="quick-action-text">联系客服</div>
+                    </div>
+                </div>
+                
+                <div class="login-footer">
+                    <p style="color: #999; font-size: 12px;">乌鲁木齐热力集团有限公司 版权所有</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 设计说明 -->
+        <div class="design-notes">
+            <h2>乌热集团暖费速办登录页面设计说明</h2>
+            
+            <div class="design-section">
+                <h3>设计理念</h3>
+                <p>本设计以"精准暖费速办"为核心理念，结合乌鲁木齐热力集团的品牌特性，打造简洁高效的登录体验。设计强调速度与便捷，让用户快速完成暖气费用的查询与支付流程。</p>
+            </div>
+            
+            <div class="design-section">
+                <h3>品牌标识</h3>
+                <p>顶部将乌热集团商标与"精准暖费速办"应用名称放在同一行，保持整洁美观。商标大小与文字相近，不抢占视觉焦点，但仍然保持了品牌识别度，形成简洁而专业的视觉形象。</p>
+            </div>
+            
+            <div class="design-section">
+                <h3>色彩方案</h3>
+                <p>以乌热集团品牌色为基础，采用红色作为主色调，象征温暖与热情，辅以黄色增加活力感，保持整体界面简洁明亮。</p>
+                <div class="color-palette">
+                    <div class="color-item primary-red" data-color="主红色"></div>
+                    <div class="color-item secondary-yellow" data-color="暖黄色"></div>
+                    <div class="color-item brand-purple" data-color="品牌紫"></div>
+                    <div class="color-item white-color" data-color="白色"></div>
+                    <div class="color-item light-bg" data-color="浅灰"></div>
+                </div>
+            </div>
+            
+            <div class="design-section">
+                <h3>登录方式</h3>
+                <p>采用手机号+短信验证码的登录方式，符合移动端用户习惯，提升登录安全性的同时简化流程，实现"速办"的核心理念。验证码按钮使用品牌红色，增强可识别性。</p>
+            </div>
+            
+            <div class="design-section">
+                <h3>交互设计</h3>
+                <ul>
+                    <li><strong>输入框反馈：</strong>点击输入框时提供清晰的状态变化，边框变为品牌红色。</li>
+                    <li><strong>验证码获取：</strong>点击获取验证码按钮会显示倒计时，防止重复发送。</li>
+                    <li><strong>登录按钮：</strong>使用品牌渐变色，增强视觉吸引力，悬停时有轻微上浮效果。</li>
+                    <li><strong>快捷功能区：</strong>提供常见问题、缴费指南、客服联系入口，方便用户快速获取帮助。</li>
+                </ul>
+            </div>
+            
+            <div class="design-section">
+                <h3>实用功能</h3>
+                <ul>
+                    <li><strong>直观的表单验证：</strong>输入不符合规则时提供即时反馈。</li>
+                    <li><strong>快捷入口：</strong>底部设置常见问题、缴费指南和客服联系入口，解决用户可能遇到的问题。</li>
+                    <li><strong>隐私条款：</strong>明确展示用户协议与隐私政策链接，符合法规要求。</li>
+                </ul>
+            </div>
+            
+            <div class="design-section">
+                <h3>设计细节</h3>
+                <ul>
+                    <li><strong>温暖氛围：</strong>整体色调以暖色为主，契合热力公司的业务特性。</li>
+                    <li><strong>简洁布局：</strong>顶部标识区采用水平排列，节省空间的同时保持视觉平衡。</li>
+                    <li><strong>留白处理：</strong>适当的空间分配，避免界面拥挤，提升视觉舒适度。</li>
+                    <li><strong>版权信息：</strong>底部标注公司版权，增强正规性与可信度。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 获取验证码逻辑
+        let countdown = 60;
+        let timer = null;
+        
+        document.getElementById('getCodeBtn').addEventListener('click', function() {
+            const phone = document.getElementById('phone').value;
+            
+            if (!/^1[3-9]\d{9}$/.test(phone)) {
+                alert('请输入正确的手机号码');
+                return;
+            }
+            
+            this.disabled = true;
+            this.innerText = `${countdown}秒后重新获取`;
+            
+            timer = setInterval(() => {
+                countdown--;
+                this.innerText = `${countdown}秒后重新获取`;
+                
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    this.disabled = false;
+                    this.innerText = '获取验证码';
+                    countdown = 60;
+                }
+            }, 1000);
+            
+            alert(`验证码已发送至手机号：${phone}`);
+        });
+        
+        // 登录逻辑
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const phone = document.getElementById('phone').value;
+            const verifyCode = document.getElementById('verifyCode').value;
+            
+            if (!/^1[3-9]\d{9}$/.test(phone)) {
+                alert('请输入正确的手机号码');
+                return;
+            }
+            
+            if (!/^\d{6}$/.test(verifyCode)) {
+                alert('请输入6位数字验证码');
+                return;
+            }
+            
+            alert('登录成功！欢迎使用乌热集团精准暖费速办系统');
+        });
+    </script>
+</body>
+</html> 
